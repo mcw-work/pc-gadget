@@ -17,7 +17,8 @@ exec >> $SNAP_COMMON/prepare-device-hook.log 2>&1
 
 # If you are forking and building your own gadget:
 # implement your preferred way of generating a serial number for this device here
-snapctl set registration.proposed-serial="\"$(date -u)\""
+# Note: serials should be unique with a model
+snapctl set registration.proposed-serial="\"$$(cat /proc/sys/kernel/random/uuid)\""
 
 # If you are using the Model Service, uncomment the below:
 # snapctl set device-service.url="https://api.snapcraft.io/v1/"
